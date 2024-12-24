@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HNS Library</title>
+    <link rel="website icon" href="http://www.hns-re2sd.dz/wp-content/uploads/2020/11/logo-trans-med.png" type="png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Roboto Condensed", serif;
+
+        }
+
+        body {
+            background:
+              linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+              url('static/images/back.jpg') no-repeat fixed center/cover;
+            line-height: 1.6;
+            display: flex;
+        }
+
+        .sidebar {
+            height: 100vh;
+            width: 60px;
+            background: black;
+            position: fixed;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .sidebar img {
+            margin-right: 5px;
+            height: 40px;
+            width: 40px;
+            margin-top: 10px;
+        }
+
+        #icons {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        #icons i {
+            color: white;
+            font-size: 1rem;
+            margin: 5px 0;
+        }
+
+        #icons i:hover {
+            color: orange;
+        }
+
+        .navbar {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 20px;
+            z-index: 2;
+        }
+
+        .navbar a {
+            text-decoration: none;
+            color: white;
+            margin: 0 10px;
+            font-size: 1rem;
+        }
+
+        .menu a:hover {
+            color: orange;
+        }
+        .container {
+            background: rgba(0, 0, 0, 0.5);
+            display: flex;
+            border: 2px solid black;
+            width: 100%;
+            height: 100vh;
+            padding-left :58px;
+
+        }
+        .sidebar2 {
+            background: rgba(0, 0, 0, 0.5);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 300px;
+            padding: 10px;
+        }
+        .pfp {
+
+            width: 100px;
+            height: 100px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        .pfp img {
+        width:80%;
+        height :auto;
+        border-radius: 50%;
+
+
+
+        }
+        .informations {
+            color: white;
+            border-radius: 10px;
+            width: 100%;
+            height: max;
+
+
+
+        }
+        .informations h5{
+        padding:10px ;
+
+        }
+        .content {
+            align-items: center;
+            display: flex;
+            flex-grow: 1;
+            overflow: hidden; /* Prevent overflow */
+            box-sizing: border-box;
+            width:50%;
+
+        }
+.Btn {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  width: 45px;
+  height: 45px;
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  position: relative;
+  margin-top:75px;
+  overflow: hidden;
+  transition-duration: 0.3s;
+  box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.199);
+  background-color: orange;
+}
+
+/* plus sign */
+.sign {
+  width: 100%;
+  transition-duration: 0.3s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.sign svg {
+  width: 18px;
+}
+
+.sign svg path {
+  fill: black;
+}
+/* text */
+.text {
+  position: absolute;
+  right: 0%;
+  width: 0%;
+  opacity: 0;
+  color: black;
+  font-size: 1.2em;
+  font-weight: 600;
+  transition-duration: 0.3s;
+}
+/* hover effect on button width */
+.Btn:hover {
+  width: 125px;
+  border-radius: 40px;
+  transition-duration: 0.3s;
+}
+
+.Btn:hover .sign {
+  width: 30%;
+  transition-duration: 0.3s;
+  padding-left: 20px;
+}
+/* hover effect button's text */
+.Btn:hover .text {
+  opacity: 1;
+  width: 70%;
+  transition-duration: 0.3s;
+  padding-right: 10px;
+}
+/* button click effect*/
+.Btn:active {
+  transform: translate(2px, 2px);
+}
+.book-container {
+            width: 25%; /* Five books per row with spacing */
+            margin: 5px;
+            padding:10px;
+            background: rgba(0, 0, 0, 0.6);
+            border-radius: 10px;
+            text-align: center;
+            color: #fff;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.4);
+            transition: transform 0.3s ease;
+
+        }
+
+        .book-container:hover {
+            transform: scale(1.06);
+        }
+
+        .book-container img {
+            max-width: 100%;
+            height: 250px;
+            border-radius: 5px;
+            object-fit: cover; /* Ensures proper aspect ratio */
+        }
+
+        .book-container h4 {
+            color: white;
+            font-size: 1rem;
+            margin-top: 10px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis; /* Trims long titles */
+        }
+        /* From Uiverse.io by gharsh11032000 */
+.animated-button {
+  position: relative;
+  display: inline-block;
+  padding: 12px 24px;
+  border: none;
+  font-size: 16px;
+  background-color: inherit;
+  border-radius: 100px;
+  font-weight: 600;
+  color: #ffffff40;
+  box-shadow: 0 0 0 2px #ffffff20;
+  cursor: pointer;
+  overflow: hidden;
+  transition: all 0.6s cubic-bezier(0.23, 1, 0.320, 1);
+}
+
+.animated-button span:last-child {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 20px;
+  height: 20px;
+  background-color: orange;
+  border-radius: 50%;
+  opacity: 0;
+  transition: all 0.8s cubic-bezier(0.23, 1, 0.320, 1);
+}
+
+.animated-button span:first-child {
+  position: relative;
+  z-index: 1;
+}
+
+.animated-button:hover {
+  box-shadow: 0 0 0 5px #2195f360;
+  color: #ffffff;
+}
+
+.animated-button:active {
+  scale: 0.95;
+}
+
+.animated-button:hover span:last-child {
+  width: 150px;
+  height: 150px;
+  opacity: 1;
+}
+
+
+
+
+
+
+        }
+
+
+
+    </style>
+</head>
+<body>
+    <div class="sidebar">
+        <a href="/"><img src="http://www.hns-re2sd.dz/wp-content/uploads/2020/11/logo-trans-med.png"></a>
+        <div id="icons">
+            <a href="facebook.com"><i class="fa-brands fa-square-facebook"></i></a>
+            <a href="http://www.hns-re2sd.dz/en-fr/"><i class="fa-solid fa-globe"></i></a>
+        </div>
+    </div>
+    <div class="container">
+        <div class="sidebar2">
+            <div class="pfp">
+                <img src="static/images/pfp.png">
+            </div>
+            <div class="informations">
+                <h5>First Name: {{result[1]}}</h5>
+                <h5>Last Name: {{result[2]}}</h5>
+                <h5>Email: {{result[6]}}</h5>
+                <h5>Address: {{result[4]}}</h5>
+                <h5>Profession: {{result[3]}}</h5>
+                <h5>Number Of Borrowed Book: {{result[5]}} </h5>
+                <h5>Penalties:{% if penalty %}
+                                {{penalty}}
+                                {%else%}
+                                You don't have one
+                                {%endif%}</h5>
+
+
+            </div>
+            <form action="/logout">
+
+                <button class="Btn">
+                  <div class="sign">
+                    <svg viewBox="0 0 512 512">
+                      <path
+                        d="M377.9 105.9L500.7 228.7c7.2 7.2 11.3 17.1 11.3 27.3s-4.1 20.1-11.3 27.3L377.9 406.1c-6.4 6.4-15 9.9-24 9.9c-18.7 0-33.9-15.2-33.9-33.9l0-62.1-128 0c-17.7 0-32-14.3-32-32l0-64c0-17.7 14.3-32 32-32l128 0 0-62.1c0-18.7 15.2-33.9 33.9-33.9c9 0 17.6 3.6 24 9.9zM160 96L96 96c-17.7 0-32 14.3-32 32l0 256c0 17.7 14.3 32 32 32l64 0c17.7 0 32 14.3 32 32s-14.3 32-32 32l-64 0c-53 0-96-43-96-96L0 128C0 75 43 32 96 32l64 0c17.7 0 32 14.3 32 32s-14.3 32-32 32z"
+                      ></path>
+                    </svg>
+                  </div>
+
+                  <div class="text">Logout</div>
+                </button>
+
+            </form>
+
+
+
+        </div>
+        <div class="content">
+            {% for book in borrowed_books %}
+                <div class="book-container" onclick="redirectToBook('{{ book[0] }}')">
+                    <img src="{{ book[3] }}" alt="Cover of {{ book[1] }}">
+                   <h4 >{{ book[1] }}</h4>
+                         <form action="{{ url_for('return_book', book_id=book[0]) }}" >
+                                <button class="animated-button">
+                                  <span>Return</span>
+                                  <span></span>
+                                </button>
+
+                        </form>
+                 </div>
+            {% endfor %}
+
+        </div>
+    </div>
+
+
+    <script src="https://kit.fontawesome.com/3a116079f6.js" crossorigin="anonymous"></script>
+    <script>
+        function redirectToBook(book_id) {
+            const url = `/book?book_id=${encodeURIComponent(book_id)}`;
+            window.location.href = url;
+        }
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,571 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HNS Library</title>
+    <link rel="website icon" href="http://www.hns-re2sd.dz/wp-content/uploads/2020/11/logo-trans-med.png" type="png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Roboto Condensed", serif;
+
+        }
+
+        body {
+            background:
+              linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.1)),
+              url('static/images/back.jpg') no-repeat fixed center/cover;
+            line-height: 1.6;
+            display: flex;
+        }
+
+        .sidebar {
+            height: 100vh;
+            width: 60px;
+            background: black;
+            position: fixed;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .sidebar img {
+            margin-right: 5px;
+            height: 40px;
+            width: 40px;
+            margin-top: 10px;
+        }
+
+        #icons {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        #icons i {
+            color: white;
+            font-size: 1rem;
+            margin: 5px 0;
+        }
+
+        #icons i:hover {
+            color: orange;
+        }
+
+        .navbar {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 20px;
+            z-index: 2;
+        }
+
+        .navbar a {
+            text-decoration: none;
+            color: white;
+            margin: 0 10px;
+            font-size: 1rem;
+        }
+
+        .menu a:hover {
+            color: orange;
+        }
+        .container {
+            background: rgba(0, 0, 0, 0.5);
+            display: flex;
+            border: 2px solid black;
+            width: 100%;
+            height: 100vh;
+            padding-left :58px;
+
+        }
+        .sidebar2 {
+            background: rgba(0, 0, 0, 0.5);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 300px;
+            padding: 10px;
+        }
+        .pfp {
+
+            width: 100px;
+            height: 100px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        .pfp img {
+        width:80%;
+        height :auto;
+        border-radius: 50%;
+        }
+        .commands {
+            color: white;
+            width: 100%;
+            height: max;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+
+
+        }
+        .commands h4{
+        padding:10px ;
+        cursor: pointer;
+
+        }
+        .commands h4:hover{
+        transform: scale(1.3);
+        color : orange;
+
+        }
+        .content {
+            align-items: center;
+            display: flex;
+            flex-grow: 1;
+            overflow: hidden;
+            box-sizing: border-box;
+            width:50%;
+
+
+        }
+        #add-section-1{
+            width: 50%;
+            height: 100vh;
+
+        }
+        #add-section-2{
+            width: 50%;
+            height: 100vh;
+
+
+        }
+        #add-section-3{
+            width: 50%;
+            height: 100vh;
+        }
+        #add-section-4{
+            width: 50%;
+            height: 100vh;
+
+        }
+        #add-section-5{
+            width: 100%;
+            height: 100vh;
+
+        }
+
+
+
+
+
+        .Btn {
+          display: flex;
+          align-items: center;
+          justify-content: flex-start;
+          width: 45px;
+          height: 45px;
+          border: none;
+          border-radius: 50%;
+          cursor: pointer;
+          position: relative;
+          margin-top:75px;
+          overflow: hidden;
+          transition-duration: 0.3s;
+          box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.199);
+          background-color: orange;
+        }
+
+        .sign {
+          width: 100%;
+          transition-duration: 0.3s;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+        }
+
+        .sign svg {
+          width: 18px;
+        }
+
+        .sign svg path {
+          fill: black;
+        }
+        .text {
+          position: absolute;
+          right: 0%;
+          width: 0%;
+          opacity: 0;
+          color: black;
+          font-size: 1.2em;
+          font-weight: 600;
+          transition-duration: 0.3s;
+        }
+        .Btn:hover {
+          width: 125px;
+          border-radius: 40px;
+          transition-duration: 0.3s;
+        }
+
+        .Btn:hover .sign {
+          width: 30%;
+          transition-duration: 0.3s;
+          padding-left: 20px;
+        }
+        .Btn:hover .text {
+          opacity: 1;
+          width: 70%;
+          transition-duration: 0.3s;
+          padding-right: 10px;
+        }
+        .Btn:active {
+          transform: translate(2px, 2px);
+        }
+      .hidden {
+            display: none;
+        }
+        .section-content {
+            color :white;
+            margin-top:-20px;
+            background: rgba(0, 0, 0, 0.6);
+            border-radius: 10px;
+            color: #fff;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.4);
+            transition: transform 0.3s ease;
+            height: 100vh; /* Full height of the viewport */
+            display: flex;
+            flex-direction: column; /* Stack items vertically */
+            align-items: center; /* Center forms horizontally */
+            gap: 5px; /* Fallback gap if `space-between` doesn’t apply */
+          }
+
+.form {
+  width: 300px; /* Define fixed width for forms */
+  display: flex;
+  flex-direction: column; /* Stack elements vertically */
+  align-items: stretch; /* Stretch elements to fill form width */
+  text-align: left; /* Align text to the left */
+  gap: 8px; /* Space between form elements */
+  background: #1e1e1e; /* Background color for forms */
+  padding: 15px; /* Inner padding for the form */
+  border: 1px solid #3d3c3c; /* Border style */
+  border-radius: 8px; /* Rounded corners */
+  color: white; /* Text color */
+  font-size: 16px; /* Font size for form text */
+}
+
+.form input {
+  height: 25px; /* Input height */
+  outline: none;
+  border: 2px solid orange; /* Input border style */
+  background: transparent; /* Transparent background */
+  padding: 8px; /* Inner padding for input */
+  border-radius: 4px; /* Rounded corners for inputs */
+  transition: 0.5s; /* Smooth transition for hover/focus states */
+  color: white;
+  font-size: 14px;
+}
+
+.form input:focus {
+  background: orange;
+}
+
+.form button {
+  width: 100%;
+  color: white;
+  transition: 0.5s;
+  font-size: 16px;
+  outline: none;
+  border: none;
+  height: 25px;
+  border-radius: 4px;
+  background: orange;
+  align-self: stretch;
+}
+      .flash {
+    position: fixed;
+    top: 10px;
+    right: 10%;
+    background-color: orange;
+    color: black;
+    padding: 10px 20px;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    opacity: 1;
+    transition: opacity 0.5s ease-out;
+    z-index: 9999; /* Ensures it stays on top */
+}
+.query_output {
+  width: 100%; /* Define fixed width for forms */
+  display: flex;
+  flex-direction: column; /* Stack elements vertically */
+  align-items: stretch; /* Stretch elements to fill form width */
+  text-align: left; /* Align text to the left */
+  gap: 8px; /* Space between form elements */
+  background: #1e1e1e; /* Background color for forms */
+  padding: 15px; /* Inner padding for the form */
+  border: 1px solid #3d3c3c; /* Border style */
+  border-radius: 8px; /* Rounded corners */
+  color: white; /* Text color */
+  font-size: 16px; /* Font size for form text */
+
+  /* Scrollable styles */
+  max-height: 300px; /* Set a maximum height */
+  overflow-y: auto; /* Enable vertical scrolling */
+  overflow-x: hidden; /* Disable horizontal scrolling */
+}
+
+/* Optional: Style the scrollbar */
+.query_output::-webkit-scrollbar {
+  width: 8px;
+}
+
+.query_output::-webkit-scrollbar-thumb {
+  background-color: #555; /* Thumb color */
+  border-radius: 4px;
+}
+
+.query_output::-webkit-scrollbar-thumb:hover {
+  background-color: #777; /* Hover thumb color */
+}
+
+
+
+
+
+    </style>
+    <script src="https://cdn.tailwindcss.com"></script>
+
+</head>
+<body>
+{% with messages = get_flashed_messages(with_categories=true) %}
+                {% if messages %}
+                    {% for category, message in messages %}
+                        <div class="flash {{ category }}">{{ message }}</div>
+                        <br>
+                    {% endfor %}
+                {% endif %}
+                {% endwith %}
+
+    <div class="sidebar">
+        <a href="/"><img src="http://www.hns-re2sd.dz/wp-content/uploads/2020/11/logo-trans-med.png"></a>
+        <div id="icons">
+            <a href="facebook.com"><i class="fa-brands fa-square-facebook"></i></a>
+            <a href="http://www.hns-re2sd.dz/en-fr/"><i class="fa-solid fa-globe"></i></a>
+        </div>
+    </div>
+    <div class="container">
+        <div class="sidebar2">
+            <div class="pfp">
+                <img src="static/images/pfp.png">
+            </div>
+            <div class="commands">
+              <h4 onclick="showAddInput(1)">Your Information</h4>
+              <h4 onclick="showAddInput(2)">Readers</h4>
+              <h4 onclick="showAddInput(3)">Books</h4>
+              <h4 onclick="showAddInput(4)">Penalties</h4>
+              <h4 onclick="showAddInput(5)">SQL Query</h4>
+            </div>
+            <form action="/logout">
+
+                <button class="Btn">
+                  <div class="sign">
+                    <svg viewBox="0 0 512 512">
+                      <path
+                        d="M377.9 105.9L500.7 228.7c7.2 7.2 11.3 17.1 11.3 27.3s-4.1 20.1-11.3 27.3L377.9 406.1c-6.4 6.4-15 9.9-24 9.9c-18.7 0-33.9-15.2-33.9-33.9l0-62.1-128 0c-17.7 0-32-14.3-32-32l0-64c0-17.7 14.3-32 32-32l128 0 0-62.1c0-18.7 15.2-33.9 33.9-33.9c9 0 17.6 3.6 24 9.9zM160 96L96 96c-17.7 0-32 14.3-32 32l0 256c0 17.7 14.3 32 32 32l64 0c17.7 0 32 14.3 32 32s-14.3 32-32 32l-64 0c-53 0-96-43-96-96L0 128C0 75 43 32 96 32l64 0c17.7 0 32 14.3 32 32s-14.3 32-32 32z"
+                      ></path>
+                    </svg>
+                  </div>
+
+                  <div class="text">Logout</div>
+                </button>
+
+            </form>
+
+        </div>
+
+
+        <div class="content">
+
+          <div id="add-section-1" class="hidden"><a onclick="hideInputs('add-section-1')">X</a>
+            <div class="section-content">
+                <div class="form">
+                  <h5>First Name: {{user[3]}} </h5>
+                  <h5>Last Name: {{user[4]}}</h5>
+                  <h5>Email: {{user[1]}}</h5>
+                  <h5>Role : ADMIN</h5>
+                </div>
+
+
+              </div>
+          </div>
+          <div id="add-section-2" class="hidden"><a onclick="hideInputs('add-section-2') ">X</a>
+              <div class="section-content">
+
+                      <form class="form" action="" method="post">Search for a Reader
+                        <input type="text" class="input" placeholder="Reader ID" name="reader_id">
+                        <button type="submit">Submit</button>
+                </form>
+                  <div class="form">
+                        {% if session['user_id']%}
+                                                <h2>Reader Information</h2>
+                        <p><strong>ID:</strong> {{ session['user_id'] }}</p>
+                        <p><strong>First Name:</strong> {{ session['user_fname'] }}</p>
+                        <p><strong>Last Name:</strong> {{ session['user_lname'] }}</p>
+                        <p><strong>Profession:</strong> {{ session['user_profession'] }}</p>
+                        <p><strong>Books Borrowed:</strong> {{ session['user_nbb'] }}</p>
+                        <p><strong>Email:</strong> {{ session['user_email'] }}</p>
+                        <p><strong>Address:</strong> {{ session['user_address'] }}</p>
+                        {% endif%}
+                    </div>
+
+            </div>
+          </div>
+          <div id="add-section-3" class="hidden"><a onclick="hideInputs('add-section-3')">X</a>
+            <div class="section-content">
+                <form class="form" action="#" method="post">Add a book
+
+                  <input type="text" class="input" placeholder="Title" name="book_title">
+                  <input type="text" class="input" placeholder="Author" name="book_author">
+                  <input type="text" class="input" placeholder="URL of the image" name="book_url">
+                  <input type="text" class="input" placeholder="Copies" name="book_copy">
+                  <input type="text" class="input" placeholder="Description" name="book_description">
+                  <input type="text" class="input" placeholder="Categories" name="book_category">
+                  <button type="submit">Submit</button>
+                </form>
+                      <form class="form" method="post" action="#">ADD Copies
+
+                          <input type="text" class="input" placeholder="Book ID" name="id_copy">
+                          <input type="text" class="input" placeholder="Number of copies" name="num_copy">
+
+                          <button type="submit">Submit</button>
+                  </form>
+                      <form class="form" method="post" action="#">Remove a book
+
+                        <input type="text" class="input" placeholder="Book ID" name="id_book">
+
+                        <button type="submit">Submit</button>
+                </form>
+
+            </div>
+          </div>
+          <div id="add-section-4" class="hidden"><a onclick="hideInputs('add-section-4')">X</a>
+            <div class="section-content">
+
+                      <form class="form" action="#" method="post" >ADD a Penalty
+
+                          <input type="text" class="input" placeholder="Reader ID" name="p_reader_id">
+                          <input type="datetime-local" id="end_date_penalty" name="end_date_penalty" required>
+
+                          <button type="submit">Submit</button>
+                  </form>
+                      <form class="form" action="#" method="post">Remove a Penalty
+
+                        <input type="text" class="input" placeholder="Penalty ID" name="id_penalty">
+
+                        <button type="submit">Submit</button>
+                </form>
+
+            </div>
+
+          </div>
+          <div id="add-section-5" class="hidden"><a onclick="hideInputs('add-section-5')">X</a>
+              <div class="section-content">
+                  <form method="post" action="#">
+              <div
+                  class="bg-[#1f1f1f] border border-black grid grid-cols-6 gap-2 rounded-xl p-4 text-sm text-white w-[300px]"
+                >
+                  <h1 class="text-xl font-bold col-span-6">Enter your SQL Query</h1>
+
+                  <textarea
+                    class="bg-[#2a2a2a] text-gray-300 placeholder-gray-500 h-28 placeholder-opacity-50 border border-gray-600 col-span-6 resize-none outline-none rounded-lg p-2 duration-300 focus:border-orange-500"
+                    placeholder="SQL Query" name="sql_query"
+                  ></textarea>
+                  <button
+                    type="submit" class="col-span-6 bg-black text-white font-semibold py-2 rounded-lg hover:bg-[#ffa600]"
+                  >
+                    Submit
+                  </button>
+
+                </div>
+                  </form>
+                  <div class="query_output" >
+                  <h5>Results: <br>{% for result in session['results']  %}
+
+                            {{result}}<br>
+
+                      {%endfor%}
+                  </h5>
+                </div>
+
+
+
+
+
+
+              </div>
+          </div>
+
+
+        </div>
+    </div>
+
+
+    <script src="https://kit.fontawesome.com/3a116079f6.js" crossorigin="anonymous"></script>
+
+  <script>
+        function showAddInput(section) {
+    // Hide all sections first, then show the selected one
+    hideAllSections();
+    document.getElementById(`add-section-${section}`).classList.remove('hidden');
+}
+
+function hideInputs(sectionId) {
+    document.getElementById(sectionId).classList.add('hidden');
+}
+
+function hideAllSections() {
+    const sections = document.querySelectorAll('[id^="add-section-"]');
+    sections.forEach(section => {
+        section.classList.add('hidden');
+    });
+}
+
+// Isolate flash message fade-out logic
+function handleFlashMessages() {
+    setTimeout(function () {
+        const flashMessages = document.querySelectorAll('.flash');
+        flashMessages.forEach(msg => {
+            msg.style.opacity = '0'; // Fade out
+            setTimeout(() => msg.remove(), 500); // Remove after fade-out
+        });
+    }, 1000);
+}
+
+// Call the flash handler independently
+handleFlashMessages();
+      // Example: Show a specific section based on server-rendered data
+const activeSection = "{{ active_section }}";
+if (activeSection) {
+    showAddInput(activeSection);
+}
+
+
+
+</script>
+</body>
+</html>

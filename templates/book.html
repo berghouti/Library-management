@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HNS Library</title>
+    <link rel="website icon" href="http://www.hns-re2sd.dz/wp-content/uploads/2020/11/logo-trans-med.png" type="png">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background:
+              linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.1)),
+              url('static/images/back.jpg') no-repeat fixed center/cover;
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            display: flex;
+        }
+
+        .sidebar {
+            height: 100vh;
+            width: 60px;
+            background: black;
+            position :fixed;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: space-between;
+
+        }
+        .sidebar img{
+         margin-right :5px;
+         height: 40px;
+         width: 40px;
+         margin-top :10px;
+        }
+
+        #icons {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-bottom: 10px;
+        }
+
+        #icons i {
+        color: white;
+        font-size: 1rem;
+        margin: 5px 0;
+        }
+
+        #icons i:hover {
+        color: orange;
+        }
+
+        }
+        .navbar {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 20px;
+            z-index: 2;
+        }
+
+        .navbar a {
+            text-decoration: none;
+            color: white;
+            margin: 0 10px;
+            font-size: 1rem;
+        }
+        .menu a:hover{
+        color :orange;
+        }
+        .main-content{
+            height: 100vh;
+            color: white;
+            width :100%;
+            font-size: 1.3rem;
+            padding-left :60px;
+            background: rgba(0, 0, 0, 0.5);
+        }
+        .book-container {
+
+            display: flex;
+            align-items: flex-start;
+            gap: 20px;
+            margin: 20px;
+            font-family: Arial, sans-serif;
+
+
+        }
+
+        .book-image {
+            flex: 0 0 200px;
+            text-align: center;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 300px;
+            overflow: hidden;
+        }
+
+        .book-image img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+        }
+
+
+
+        .details-container {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            gap: 15px;
+        }
+
+        .detail {
+            padding: 10px;
+            text-align: left;
+        }
+        .description {
+            flex: 1;
+
+            padding: 10px  0 0 20px;
+        }
+        .btn {
+         width: 6.5em;
+         height: 2.3em;
+         margin: 0.5em;
+         background: orange;
+         color: black;
+         border: none;
+         border-radius: 0.625em;
+         font-size: 20px;
+         font-weight: bold;
+         cursor: pointer;
+         position: relative;
+         z-index: 1;
+         overflow: hidden;
+        }
+
+        button:hover {
+         color: orange;
+        }
+
+        button:after {
+         content: "";
+         background: black;
+         position: absolute;
+         z-index: -1;
+         left: -20%;
+         right: -20%;
+         top: 0;
+         bottom: 0;
+         transform: skewX(-45deg) scale(0, 1);
+         transition: all 0.5s;
+        }
+
+        button:hover:after {
+         transform: skewX(-45deg) scale(1, 1);
+         -webkit-transition: all 0.5s;
+         transition: all 0.5s;
+        }
+        .flash {
+            position: fixed;
+            top: 10px;
+            right: 10px;
+            background-color: orange;
+            color: black;
+            padding: 10px 20px;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+            opacity: 1;
+            transition: opacity 0.5s ease-out;
+        }
+
+
+
+
+
+
+    </style>
+</head>
+<body>
+    <div class="sidebar">
+        <a href="/"><img src="http://www.hns-re2sd.dz/wp-content/uploads/2020/11/logo-trans-med.png"></a>
+        <div id="icons">
+                <a href="facebook.com"><i  class="fa-brands fa-square-facebook"></i></a>
+                <a href="http://www.hns-re2sd.dz/en-fr/"><i class="fa-solid fa-globe"></i></a>
+        </div>
+    </div>
+    <div class="main-content">
+        <div class="book-container">
+    <div class="book-image">
+        <img src="{{url}}" alt="Book Image">
+    </div>
+    <div class="details-container">
+            <div class="detail"><strong> Title:</strong> {{title}}</div>
+            <div class="detail"><strong>Author:</strong> {{author}}</div>
+            <div class="detail"><strong>Genre:</strong> {{genre}}</div>
+        <form action="#" method="post">
+            <button class="btn" type="submit"> Borrow</button>
+        </form>
+        {% with messages = get_flashed_messages(with_categories=true) %}
+                {% if messages %}
+                    {% for category, message in messages %}
+                        <div class="flash {{ category }}">{{ message }}</div>
+                        <br>
+                    {% endfor %}
+                {% endif %}
+                {% endwith %}
+
+        </div>
+    </div>
+    <div class="description"> <strong>Description:</strong> {{description}}</div>
+</div>
+
+
+    <script src="https://kit.fontawesome.com/3a116079f6.js" crossorigin="anonymous"></script>
+<script>
+    setTimeout(function() {
+            const flashMessages = document.querySelectorAll('.flash');
+            flashMessages.forEach(msg => {
+                msg.style.opacity = '0'; // Fade out
+                setTimeout(() => msg.remove(), 500); // Remove after fade-out
+            });
+        }, 1000);
+</script>
+
+</body>
+</html>

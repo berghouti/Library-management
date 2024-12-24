@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HNS Library</title>
+    <link rel="website icon" href="http://www.hns-re2sd.dz/wp-content/uploads/2020/11/logo-trans-med.png" type="png">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: url('static/images/back.jpg') no-repeat fixed center/cover;
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            display: flex;
+        }
+
+        .sidebar {
+            height: 100vh;
+            width: 60px;
+            background: black;
+            position :fixed;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: space-between;
+
+        }
+        .sidebar img{
+         margin-right :5px;
+         height: 40px;
+         width: 40px;
+         margin-top :10px;
+
+
+
+
+
+
+        }
+
+
+
+            #icons {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-bottom: 10px;
+    }
+
+    #icons i {
+        color: white;
+        font-size: 1rem;
+        margin: 5px 0;
+    }
+
+    #icons i:hover {
+        color: orange;
+    }
+
+        .main-content {
+            margin-left :60px;
+            flex-grow: 1;
+            position: relative;
+            background: rgba(0, 0, 0, 0.6);
+
+        }
+
+        .hero {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: flex-start;
+            color: white;
+            padding: 20px;
+            position: relative;
+        }
+
+        .hero::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+        }
+
+        .hero-content {
+            padding-top:15%;
+            height :100vh;
+            position: relative;
+            z-index: 1;
+            width:100%;
+            display: flex;
+            flex-direction: column;
+
+
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            color: white;
+            margin-bottom: 1rem;
+            width :50%;
+        }
+
+        .hero h1 span {
+            color: orange;
+        }
+
+        .hero p {
+            margin-bottom: 1.5rem;
+            font-size: 1.2rem;
+        }
+
+        .buttons {
+            display: flex;
+            gap: 10px;
+        }
+
+        .btn {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+
+        .btn-primary {
+            background-color: orange;
+            color: white;
+        }
+
+        .btn-secondary {
+            background-color: white;
+            color: black;
+        }
+
+        .navbar {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 20px;
+            z-index: 2;
+        }
+
+        .navbar a {
+            text-decoration: none;
+            color: white;
+            margin: 0 10px;
+            font-size: 1rem;
+        }
+        .menu a:hover{
+        color :orange;
+        }
+        .search-bar {
+            color: white;
+            width: 100%;
+            height: 40px;
+            padding: 5px;
+            border: none;
+            border-radius: 30px;
+            background: rgba(255, 255, 255, 0.1);
+            margin-right: 5px;
+        }
+
+        .search-bar:focus {
+            outline: none;
+            box-shadow: 0 0 5px rgba(255, 165, 0, 0.5)
+;
+        }
+        .search-button {
+            height: 40px;
+            width: 40px;
+            padding: 5px;
+            border: none;
+            border-radius: 40px;
+            background: #fff;
+            color: #000;
+            cursor: pointer;
+            font-size: 1rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .search-button:hover {
+            background: orange;
+
+        }
+
+        .search-button svg {
+            width: 20px;
+            height: 20px;
+        }
+        form {
+            display: flex;
+            align-items: center;
+            width: 50%;
+            justify-content: center;
+        }
+        .recommendation {
+            padding: 20px;
+            text-align: center;
+            margin-top: 70px;
+        }
+
+        .recommendation h1 {
+            margin-bottom: 20px;
+            font-size: 1.2rem;
+            white-space: nowrap; /* Prevent the text from wrapping to a new line */
+            overflow: hidden; /* Hide the overflowing text */
+            text-overflow: ellipsis;
+        }
+
+        .book-container {
+            display: inline-block;
+            margin: 10px;
+            padding: 10px;
+            width: 200px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            text-align: center;
+            color: #fff;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.4);
+            transition: transform 0.3s ease;
+        }
+        .book-container:hover {
+            transform: scale(1.1);
+        }
+
+        .book-container img {
+            max-width: 100%;
+            height: 300px;
+            border-radius: 5px;
+        }
+        .book-container h1{
+            text-color : white;
+        }
+        .hero-content i {
+      position: absolute;
+      bottom: 0px;
+      left: 50%;
+      transform: translateX(-50%);
+      padding: 10px 20px;
+      color: white;
+      font-size: 25px;
+      cursor: pointer;
+    }
+
+    .hero-content i:hover {
+      color: orange;
+    }
+        .flash {
+            position: fixed;
+            top: 10px;
+            left:35%;
+            background-color: orange;
+            color: black;
+            padding: 10px 20px;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+            opacity: 1;
+            transition: opacity 0.5s ease-out;
+        }
+    </style>
+</head>
+<body>
+    <div class="sidebar">
+        <a href="/"><img src="http://www.hns-re2sd.dz/wp-content/uploads/2020/11/logo-trans-med.png"></a>
+        <div id="icons">
+                <a href="facebook.com"><i  class="fa-brands fa-square-facebook"></i></a>
+                <a href="http://www.hns-re2sd.dz/en-fr/"><i class="fa-solid fa-globe"></i></a>
+        </div>
+    </div>
+
+
+    <div class="main-content">
+        <div class="hero">
+            <div class="navbar">
+                <div class="logo">
+                    <h2 style="color: white;">HNS RE2SD</h2>
+                </div>
+                <div class="menu">
+                    <a href="#" id="scrollButton" >Recommendation</a>
+                    <a href="#">Mobile App</a>
+                    <a href="/profile">Profile</a>
+                </div>
+            </div>
+            {% with messages = get_flashed_messages(with_categories=true) %}
+                {% if messages %}
+                    {% for category, message in messages %}
+                        <div class="flash {{ category }}">{{ message }}</div>
+                        <br>
+                    {% endfor %}
+                {% endif %}
+                {% endwith %}
+
+            {% if logged_in %}
+                <div class="hero-content">
+                    <h1>Search for <span>books  in our library database</span> </h1>
+
+                    <form action="#" method="post">
+                        <input type="text" id="search" placeholder="  Search for a book, author, or genre" class="search-bar" name="search">
+                        <button type="submit" class="search-button">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <circle cx="11" cy="11" r="8"></circle>
+                                <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                            </svg>
+                        </button>
+                    </form>
+                    <i class="fa-solid fa-chevron-down"  onclick="scrollToNext()"></i>
+                </div>
+            {% else %}
+                <div class="hero-content">
+                <h1>WELCOME TO <span>RE2SD LIBRARY</span></h1>
+                <p>Explore a world of knowledge and resources. Access a wide range of books, journals, and digital materials to support your academic journey. Visit us for a quiet and enriching study environment.</p>
+                <div class="buttons">
+                    <a href="/register"><button class="btn btn-primary">Get Started</button></a>
+                    <a href="/login"><button class="btn btn-secondary">Login</button></a>
+                </div>
+            </div>
+            {% endif %}
+        </div>
+        {% if logged_in %}
+        <div class="section2">
+        <section class="recommendation">
+        <h1 style="color:white;">The Most Borrowed Books</h1>
+        {% for book in famous_books %}
+            <div class="book-container" onclick="redirectToBook('{{ book[0] }}')">
+                <img src="{{ book[3] }}" alt="Cover of {{ book[1] }}">
+                <h1>{{ book[1] }}</h1>
+            </div>
+
+        {% endfor %}
+
+    </section>
+            <section class="recommendation">
+                {% if book_info_list%}
+        <h1 style="color:white;" id="section2">Recommendation</h1>
+        {% for book in  book_info_list %}
+            <div class="book-container" onclick="redirectToBook('{{ book[0] }}')">
+                <img src="{{ book[3] }}" alt="Cover of {{ book[1] }}">
+                <h1>{{ book[1] }}</h1>
+            </div>
+        {% endfor %}
+                {%endif%}
+
+    </section>
+
+
+
+        </div>
+        {% endif %}
+
+    </div>
+
+    <script src="https://kit.fontawesome.com/3a116079f6.js" crossorigin="anonymous"></script>
+    <script>
+    function scrollToNext() {
+      const nextSection = document.querySelector('.section2');
+      nextSection.scrollIntoView({ behavior: 'smooth' });
+    }
+    function redirectToBook(book_id) {
+    const url = `/book?book_id=${encodeURIComponent(book_id)}`;
+    window.location.href = url;
+    }
+  </script>
+<script>
+    setTimeout(function() {
+            const flashMessages = document.querySelectorAll('.flash');
+            flashMessages.forEach(msg => {
+                msg.style.opacity = '0'; // Fade out
+                setTimeout(() => msg.remove(), 500); // Remove after fade-out
+            });
+        }, 1000);
+    document.getElementById('scrollButton').addEventListener('click', function() {
+            // Scroll to Section 2
+            document.getElementById('section2').scrollIntoView({ behavior: 'smooth' });
+        });
+</script>
+</body>
+</html>

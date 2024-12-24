@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>login | MySite</title>
+     <style>/* General Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+        body{
+        background: url('static/images/back.jpg') no-repeat center center/cover;
+
+        }
+
+        /* Background Image */
+        .background-image {
+            background: rgba(0, 0, 0, 0.6);
+            width: 100%;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            color: white;
+        }
+
+        /* Header Section */
+        .header {
+            position: absolute;
+            top: 20px;
+            left: 30px;
+            right: 30px;
+            display: flex;
+            justify-content: space-between;
+            font-size: 1.2em;
+            font-weight: bold;
+        }
+
+        .logo {
+            text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.7);
+        }
+
+        .user-icon {
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            padding: 10px;
+            width: 40px;
+            text-align: center;
+            cursor: pointer;
+        }
+
+        /* Form Container */
+        .form-container {
+            background: rgba(0, 0, 0, 0.6);
+            padding: 30px;
+            border-radius: 12px;
+            text-align: center;
+            max-width: 400px;
+            width: 90%;
+            backdrop-filter: blur(5px);
+        }
+
+        .form-container h1 {
+            margin-bottom: 20px;
+            font-size: 2em;
+            text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.7);
+        }
+
+        .form-group {
+            margin: 10px 0;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 12px;
+            border: none;
+            border-radius: 5px;
+            outline: none;
+            font-size: 1em;
+            color: #333;
+            background: rgba(255, 255, 255, 0.9);
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+            transition: 0.3s;
+        }
+
+        .form-group input:focus {
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+        }
+
+        button {
+            width: 100%;
+            padding: 12px;
+            margin-top: 10px;
+            background: #333;
+            color: white;
+            border: none;
+            border-radius: 25px;
+            font-size: 1em;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.3s ease;
+        }
+
+        button:hover {
+            background: #555;
+            transform: scale(1.05);
+        }
+
+        p {
+            margin-top: 15px;
+            font-size: 0.9em;
+        }
+
+        p a {
+            color: #f0f0f0;
+            text-decoration: underline;
+            transition: 0.3s;
+        }
+
+        p a:hover {
+            color: #ccc;
+        }
+</style>
+</head>
+<body>
+    <!-- Background Image -->
+    <div class="background-image">
+
+
+        <div class="form-container">
+            <h1>Log in</h1>
+             {% if msg %}
+              <p class="error-message">{{ msg }}</p>
+            {% endif %}
+            <form action="/login" method="post">
+                <div class="form-group">
+                    <input type="email" placeholder="Email" name="email" required>
+                </div>
+                <div class="form-group">
+                    <input type="password" placeholder="Password" name="password" required>
+                </div>
+                
+                <button type="submit">login</button>
+            </form>
+            <p>don't have an account ? <a href="/register">Register</a> </p>
+        </div>
+    </div>
+</body>
+</html>
