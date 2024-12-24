@@ -40,10 +40,10 @@ def apply_penalties_for_overdue_books():
     if 'user_ID' in session:
         overdue_books = query_db(
             """
-            SELECT idB, due_date
+            SELECT idR, due_date
             FROM borrow
-            WHERE return_date IS NULL AND due_date < ? AND idR = ?
-            """, (current_date, session['user_ID'])
+            WHERE return_date IS NULL AND due_date < ? 
+            """, (current_date,)
         )
 
         penalties_date = (datetime.now() + timedelta(minutes=1)).strftime('%Y-%m-%d %H:%M:%S')
@@ -54,7 +54,7 @@ def apply_penalties_for_overdue_books():
                 SELECT idP 
                 FROM penalties 
                 WHERE status = 1 AND idR = ?
-                """, (session['user_ID'],), one=True
+                """, (book[0],), one=True
             )
 
             if not active_penalty:
@@ -62,27 +62,28 @@ def apply_penalties_for_overdue_books():
                     """
                     INSERT INTO penalties (idR, end_time, status)
                     VALUES (?, ?, ?)
-                    """, (session['user_ID'], penalties_date, 1)
+                    """, (book[0], penalties_date, 1)
                 )
 
 def check_penalties_end():
     if 'user_ID' in session:
-        penalty = query_db(
+        penalties = query_db(
             """
             SELECT idP
             FROM penalties
-            WHERE end_time < ? AND status = ? AND idR = ?
-            """, (current_date, 1, session['user_ID']), one=True
+            WHERE end_time < ? AND status = ? 
+            """, (current_date, 1, )
         )
 
-        if penalty:
-            execute_db(
-                """
-                UPDATE penalties 
-                SET status = ?
-                WHERE idP = ?
-                """, (0, penalty[0])
-            )
+        if penalties:
+            for penalty in penalties:
+                execute_db(
+                    """
+                    UPDATE penalties 
+                    SET status = ?
+                    WHERE idP = ?
+                    """, (0, penalty[0])
+                )
 
 @app.route('/', methods=['POST', 'GET'])
 def home():
@@ -123,7 +124,7 @@ def home():
                 SELECT idB
                 FROM borrow
                 WHERE idR = ?
-                ORDER BY borrow_date DESC
+                ORDER BY idBr DESC
                 LIMIT ?
             """, (session['user_ID'],5))
             result = cur.fetchall()
